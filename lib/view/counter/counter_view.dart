@@ -1,4 +1,4 @@
-import 'package:bloc_pattern/view/counter/counter_bloc.dart';
+import 'package:bloc_pattern/view/counter/counter_cubit.dart';
 import 'package:flutter/material.dart';
 
 class CounterView extends StatefulWidget {
@@ -9,11 +9,11 @@ class CounterView extends StatefulWidget {
 }
 
 class _CounterViewState extends State<CounterView> {
-  final _bloc = CounterBloc();
+  final _cubit = CounterCubit();
 
   @override
   void dispose() {
-    _bloc.dispose();
+    _cubit.dispose();
     super.dispose();
   }
 
@@ -22,8 +22,8 @@ class _CounterViewState extends State<CounterView> {
     return Scaffold(
       body: Center(
         child: StreamBuilder<int>(
-          stream: _bloc.stream,
-          initialData: _bloc.counter,
+          stream: _cubit.stream,
+          initialData: _cubit.state,
           builder: (_, snapshot) => Text(
             '${snapshot.data}',
             style: const TextStyle(fontSize: 25),
@@ -32,9 +32,7 @@ class _CounterViewState extends State<CounterView> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _bloc.add(
-            DecrementEvent(10),
-          );
+          _cubit.increment();
         },
         child: const Icon(Icons.add),
       ),
