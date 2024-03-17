@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 
 abstract class Cubit<State> {
-  Cubit({required State initialState}) : _state = initialState;
+  Cubit(State initialState) : _state = initialState;
 
   State _state;
   State get state => _state;
