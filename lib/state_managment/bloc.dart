@@ -22,12 +22,12 @@ abstract class Bloc<Event, State> extends Cubit<State> {
     _handlers.putIfAbsent(E, () => handler);
   }
 
-  void add(Event event) {
+  void add<E extends Event>(E event) {
     assert(
-      _handlers.containsKey(Event),
-      'on<${Event.toString()}>(...) must be called in the contructor',
+      _handlers.containsKey(E),
+      'on<${E.toString()}>(...) must be called in the contructor',
     );
-    final fn = _handlers[Event] as EventHandler<Event, State>;
+    final fn = _handlers[E] as EventHandler<E, State>;
     fn(event, emit);
   }
 

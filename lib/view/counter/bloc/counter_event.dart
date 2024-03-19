@@ -1,5 +1,13 @@
-abstract class CounterEvent {}
+abstract class CounterEvent {
+  final int value;
 
-class IncrementEvenet extends CounterEvent {}
+  CounterEvent(this.value);
+}
 
-class DecrementEvenet extends CounterEvent {}
+class IncrementEvenet extends CounterEvent {
+  IncrementEvenet(super.value);
+}
+
+class DecrementEvenet extends CounterEvent {
+  DecrementEvenet(super.value);
+}
